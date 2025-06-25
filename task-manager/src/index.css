@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Pagination rule */
+
+.pagination .page-link {
+  color: #28242c; /* text color */
+  background-color: #fff; /* background */
+  border-color: #ddd; /* border */
+}
+
+.pagination .page-link:hover {
+  color: #fff;
+  background-color: #28242c;
+  border-color: #fff;
+}
+
+.pagination .active .page-link {
+  color: #fff;
+  background-color: #28242c;
+  border-color: #fff;
+}
+
+
