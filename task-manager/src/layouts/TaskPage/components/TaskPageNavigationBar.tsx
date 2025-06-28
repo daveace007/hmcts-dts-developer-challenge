@@ -1,4 +1,8 @@
 
+import { NavLink } from "react-router-dom";
+import * as Routes from "../../../Routes";
+
+
 export const TaskPageNavigationBar = () => {
     return (
         <nav className='navbar navbar-expand-lg navbar-dark bg-dark text-light'>
@@ -11,13 +15,16 @@ export const TaskPageNavigationBar = () => {
                 <div className='collapse navbar-collapse' id='navbarNavDropdown'>
                     <ul className='navbar-nav'>
                         <li className='nav-item'>
-                            <a className='nav-link active' aria-current='page' href='#'>New Task</a>
+                            <NavLink className='nav-link active' aria-current='page' to={Routes.TASKS_PAGE}>All Tasks</NavLink>
                         </li>
                         <li className='nav-item'>
-                            <a className='nav-link' href='#'>Task</a>
+                            <NavLink className='nav-link active' aria-current='page' to={Routes.NEW_TASK_PAGE}>New Task</NavLink>
                         </li>
                         <li className='nav-item'>
-                            <a className='nav-link' href='#'>Modify Task</a>
+                            <NavLink className='nav-link' to={Routes.CURRENT_TASK_PAGE}>Task</NavLink>
+                        </li>
+                        <li className='nav-item'>
+                            <NavLink className='nav-link' to={Routes.MODIFIABLE_TASK_PAGE}>Modify Task</NavLink>
                         </li>
                     </ul>
                 </div>

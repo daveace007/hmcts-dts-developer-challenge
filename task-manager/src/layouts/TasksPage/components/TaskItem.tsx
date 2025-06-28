@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import * as Routes from "../../../Routes"
 
 export const TaskItem = () => {
 
@@ -11,7 +13,7 @@ export const TaskItem = () => {
             </span>
             <span className='flex-grow-1 text-center'>Dev Ops Task</span>
             <div className='d-flex flex-row gap-1'>
-                <button className='btn btn-primary' type='button' >More</button>
+                <Link className='btn btn-primary' type='button' to={Routes.CURRENT_TASK_PAGE}>More</Link>
                 <button className='btn btn-danger' type='button'>Delete</button>
             </div>
 
