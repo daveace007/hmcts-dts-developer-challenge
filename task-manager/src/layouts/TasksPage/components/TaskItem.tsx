@@ -1,11 +1,13 @@
 
-export const TaskItem = () =>{
+export const TaskItem = () => {
 
     return (
-        <div className='d-flex flex-row bg-light text-dark p-2 mb-1'>
+        <div className='card d-flex flex-row bg-light text-dark p-2 mb-1'>
 
-            <span className="rounded-circle bg-dark text-light d-flex justify-content-center align-items-center" style={{width: '2em', height: '2em', fontSize: '1em'}}>
-                {1}
+            <span className="rounded-circle bg-dark text-light d-flex justify-content-center align-items-center">
+                <span className="rounded-circle bg-light text-dark d-flex justify-content-center align-items-center" style={{ width: '2em', height: '2em', fontSize: '1em' }}>
+                    {1}
+                </span>
             </span>
             <span className='flex-grow-1 text-center'>Dev Ops Task</span>
             <div className='d-flex flex-row gap-1'>
@@ -15,5 +17,5 @@ export const TaskItem = () =>{
 
         </div>
     );
-    
+
 }
