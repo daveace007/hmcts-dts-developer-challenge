@@ -1,10 +1,16 @@
 
 import { CurrentTask } from "./components/CurrentTask";
+import { ModifiableTask } from "./components/ModifiableTask";
+import { NewTask } from "./components/NewTask";
+import { TaskPageNavigationBar } from "./components/TaskPageNavigationBar";
 
-export const TaskPage = () =>{
+export const TaskPage = () => {
     return (
         <div>
-            <CurrentTask/>
+            <TaskPageNavigationBar />
+            <NewTask />
+            <CurrentTask />
+            <ModifiableTask />
         </div>
     );
 }
