@@ -16,7 +16,7 @@ export const TaskItem:React.FC<{index:number, task:TaskModel}> = (props) => {
                 {props.task.title}
             </span>
             <div className='d-flex flex-row gap-1'>
-                <Link className='btn btn-primary' type='button' to={Routes.CURRENT_TASK_PAGE}>More</Link>
+                <Link className='btn btn-primary' type='button' to={`${Routes.TASKS}${props.task.id}`}>More</Link>
                 <button className='btn btn-danger' type='button'>Delete</button>
             </div>
 

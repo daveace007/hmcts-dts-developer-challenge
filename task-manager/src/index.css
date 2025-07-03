@@ -14,22 +14,25 @@ code {
 
 /* Pagination rule */
 
-.pagination .page-link {
-  color: #28242c; /* text color */
-  background-color: #fff; /* background */
-  border-color: #ddd; /* border */
+.pagination .page-link, .nav-pills .nav-link {
+  color: #28242c;
+  background-color: #fff;
+  border-color: #ddd;
 }
 
-.pagination .page-link:hover {
+.pagination .page-link:hover, .nav-pills .nav-link:hover {
   color: #fff;
   background-color: #28242c;
   border-color: #fff;
 }
 
-.pagination .active .page-link {
+.pagination .active .page-link, .nav-pills .nav-link.active{
   color: #fff;
   background-color: #28242c;
   border-color: #fff;
 }
+
+
+
 
 
