@@ -18,8 +18,7 @@ export const TasksPage = () => {
 
     const handleSearchChange = (value: string) => setSearchText(value);
 
-    const handleItemSelect = async(value: string) => setSelectedItem(value);
-        
+    const handleItemSelect = async (value: string) => setSelectedItem(value);
 
     useEffect(() => {
         let url: string = '';
@@ -88,7 +87,7 @@ export const TasksPage = () => {
                         <div className="flex-grow-1 overflow-auto">
                             <div className='p-3'>
                                 {
-                                    tasks.map((task, index) => <TaskItem task={task} index={index} key={task.id} />)
+                                    tasks.map((task, index) => <TaskItem task={task} index={index} key={task.id}/>)
                                 }
                             </div>
                         </div>
