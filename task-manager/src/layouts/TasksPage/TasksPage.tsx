@@ -2,7 +2,7 @@
 
 import { SearchBar } from "./components/SearchBar";
 import { TaskItem } from "./components/TaskItem";
-import { PaginationBar } from "./components/PaginationBar";
+import { PageInfo, PaginationBar } from "./components/PaginationBar";
 import { useState, useEffect } from "react";
 import TaskModel from "../../model/TaskModel";
 import * as Routes from "../../Routes"
@@ -15,26 +15,43 @@ export const TasksPage = () => {
     const [httpError, setHttpError] = useState(null);
     const [searchText, setSearchText] = useState<string>('');
     const [selectedItem, setSelectedItem] = useState<string>('');
+    const [pageInfo, setPageInfo] = useState<PageInfo>(
+        {
+            pageNumber: 0, totalPages: 0, size: 10
+        }
+    );
 
     const handleSearchChange = (value: string) => setSearchText(value);
 
-    const handleItemSelect = async (value: string) => setSelectedItem(value);
+    const handleItemSelect = (value: string) => setSelectedItem(value);
+
+    const handlePaginationItemClick = (info: PageInfo) => {
+        if (!isLoading) {
+            setPageInfo(info);
+        }
+    };
 
     useEffect(() => {
-        let url: string = '';
-        if (searchText != '')
-            url = `${Routes.BASE_URL}/search-title?title=${searchText}&page=0&size=10`;
-        else if (selectedItem != '')
-            url = `${Routes.BASE_URL}/search-status?status=${selectedItem}&page=0&size=10`;
+        const fetchData = async () => {
+            let url: string = prepareUrl();
+            fetchTasks(url).catch((error: any) => {
+                setIsLoading(false);
+                setHttpError(error.message);
+            });
+        }
+        fetchData();
+
+    }, [searchText, selectedItem, pageInfo.pageNumber]);
+
+
+    const prepareUrl = () => {
+        if (searchText !== '')
+            return `${Routes.BASE_URL}/search-title?title=${searchText}&page=${pageInfo.pageNumber}&size=${pageInfo.size}`;
+        else if (selectedItem !== '')
+            return `${Routes.BASE_URL}/search-status?status=${selectedItem}&page=${pageInfo.pageNumber}&size=${pageInfo.size}`;
         else
-            url = `${Routes.BASE_URL}?page=0&size=10`;
-
-        fetchTasks(url).catch((error: any) => {
-            setIsLoading(false);
-            setHttpError(error.message);
-        });
-
-    }, [tasks]);
+            return `${Routes.BASE_URL}?&page=${pageInfo.pageNumber}&size=${pageInfo.size}`;
+    }
 
     const fetchTasks = async (url: string) => {
 
@@ -50,6 +67,11 @@ export const TasksPage = () => {
 
         const loadedTasks: TaskModel[] = [];
 
+        const loadedPageInfo: PageInfo = {
+            pageNumber: responseJson.number,
+            totalPages: responseJson.totalPages,
+            size: responseJson.size
+        }
 
         for (const key in responseData) {
             loadedTasks.push(
@@ -62,8 +84,11 @@ export const TasksPage = () => {
                 }
             )
         }
+
         setTasks(loadedTasks);
+        setPageInfo(loadedPageInfo);
         setIsLoading(false);
+
 
     }
 
@@ -87,12 +112,17 @@ export const TasksPage = () => {
                         <div className="flex-grow-1 overflow-auto">
                             <div className='p-3'>
                                 {
-                                    tasks.map((task, index) => <TaskItem task={task} index={index} key={task.id}/>)
+                                    (tasks.length < 1) ?
+                                    <h1 className='text-center'>No Content!</h1>:
+                                    tasks.map((task, index) => <TaskItem task={task} index={index} key={task.id} />)
                                 }
                             </div>
                         </div>
                         <div className='d-flex w-100 p-3 bg-dark align-items-center justify-content-center' style={{ position: 'sticky', bottom: '6vh', zIndex: 1020 }}>
-                            <PaginationBar />
+                            {
+                                (pageInfo.totalPages > 1) &&
+                                <PaginationBar pageInfo={pageInfo} onPageInfoChange={handlePaginationItemClick} isLoading={isLoading} />
+                            }
                         </div>
                     </>
             }
