@@ -29,15 +29,17 @@ export const SearchBar: React.FC<SearchBarEvents> = ({ onSearchChange, onItemSel
                     Status
                 </button>
                 <ul className='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
-                    <li><a className='dropdown-item' href="#" onClick={() =>handleItemSelect('To do')}>To do</a></li>
-                    <li><a className='dropdown-item' href="#" onClick={() =>handleItemSelect('In Progress')}>In Progress</a></li>
-                    <li><a className='dropdown-item' href="#" onClick={() =>handleItemSelect('Completed')}>Completed</a></li>
-                    <li><a className='dropdown-item' href="#" onClick={() =>handleItemSelect('On Hold')}>On Hold</a></li>
-                    <li><a className='dropdown-item' href="#" onClick={() =>handleItemSelect('Cancelled')}>Cancelled</a></li>
-                    <li><a className='dropdown-item' href="#" onClick={() =>handleItemSelect('Pending')}>Pending</a></li>
-                    <li><a className='dropdown-item' href="#" onClick={() =>handleItemSelect('Reviewing')}>Reviewing</a></li>
-                    <li><a className='dropdown-item' href="#" onClick={() =>handleItemSelect('Failed')}>Failed</a></li>
-                    <li><a className='dropdown-item' href="#" onClick={() =>handleItemSelect('Deffered')}>Deffered</a></li>
+                    <li><a className='dropdown-item' href="#" onClick={() => handleItemSelect('To do')}>To do</a></li>
+                    <li><a className='dropdown-item' href="#" onClick={() => handleItemSelect('In Progress')}>In Progress</a></li>
+                    <li><a className='dropdown-item' href="#" onClick={() => handleItemSelect('Completed')}>Completed</a></li>
+                    <li><a className='dropdown-item' href="#" onClick={() => handleItemSelect('On Hold')}>On Hold</a></li>
+                    <li><a className='dropdown-item' href="#" onClick={() => handleItemSelect('Cancelled')}>Cancelled</a></li>
+                    <li><a className='dropdown-item' href="#" onClick={() => handleItemSelect('Pending')}>Pending</a></li>
+                    <li><a className='dropdown-item' href="#" onClick={() => handleItemSelect('Reviewing')}>Reviewing</a></li>
+                    <li><a className='dropdown-item' href="#" onClick={() => handleItemSelect('Failed')}>Failed</a></li>
+                    <li><a className='dropdown-item' href="#" onClick={() => handleItemSelect('Deffered')}>Deffered</a></li>
+                    <li><a className='dropdown-item' href="#" onClick={() => handleItemSelect('All')}>All</a></li>
+
                 </ul>
             </div>
         </div>

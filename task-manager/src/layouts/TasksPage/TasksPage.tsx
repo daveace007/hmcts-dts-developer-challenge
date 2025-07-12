@@ -47,7 +47,7 @@ export const TasksPage = () => {
     const prepareUrl = () => {
         if (searchText !== '')
             return `${Routes.BASE_URL}/search-title?title=${searchText}&page=${pageInfo.pageNumber}&size=${pageInfo.size}`;
-        else if (selectedItem !== '')
+        else if (selectedItem !== '' && selectedItem !== 'All')
             return `${Routes.BASE_URL}/search-status?status=${selectedItem}&page=${pageInfo.pageNumber}&size=${pageInfo.size}`;
         else
             return `${Routes.BASE_URL}?&page=${pageInfo.pageNumber}&size=${pageInfo.size}`;
