@@ -6,16 +6,16 @@ class TaskModel{
 
     id:number;
     title: string;
-    description?: string;
+    description: string;
     status:string;
-    dueDateTime:LocalDateTime;
+    dueDateTime:Date;
 
     constructor(
         id:number, 
         title:string,
         description:string,
         status:string, 
-        dueDateTime:LocalDateTime){
+        dueDateTime:Date){
 
         this.id = id;
         this.title = title;
@@ -24,6 +24,7 @@ class TaskModel{
         this.dueDateTime = dueDateTime;
 
     }
+
 }
 
 export default TaskModel;

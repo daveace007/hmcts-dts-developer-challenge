@@ -6,6 +6,8 @@ import { TasksPage } from './layouts/TasksPage/TasksPage';
 import { TaskPage } from './layouts/TaskPage/TaskPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import * as Routes from './Routes';
+import { Fab } from './layouts/utils/Fab';
+import { NewTask } from './layouts/TaskPage/components/NewTask';
 
 export const App = () => {
   return (
@@ -19,8 +21,12 @@ export const App = () => {
           <Route path={Routes.TASKS_PAGE} exact>
             <TasksPage />
           </Route>
+          <Route path={Routes.NEW_TASK} exact>
+            <NewTask/>
+          </Route>
           <TaskPage />
         </Switch>
+        <Fab />
       </div>
       <Footer />
     </div>

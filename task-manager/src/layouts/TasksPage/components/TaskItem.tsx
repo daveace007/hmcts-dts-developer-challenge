@@ -2,10 +2,14 @@ import { Link } from "react-router-dom";
 import * as Routes from "../../../Routes"
 import TaskModel from "../../../model/TaskModel";
 import { useState } from "react";
+import { Dialog } from "../../utils/Dialog";
 
 export const TaskItem: React.FC<{ index: number, task: TaskModel }> = (props) => {
 
     const [httpError, setHttpError] = useState(null);
+    const dialogId = 'task-delete-dialog';
+    const dialogTitle = 'Delete Task';
+    const dialogBody = 'Are sure you want to delete this task item?';
 
     const onDeleteClick = (id: number) => deleteTaskById(id);
 
@@ -43,23 +47,12 @@ export const TaskItem: React.FC<{ index: number, task: TaskModel }> = (props) =>
 
             </div>
             {/* modal - delete confirmation dialog */}
-            <div id='task-delete-dialog' className='modal fade' tabIndex={-1}>
-                <div className='modal-dialog'>
-                    <div className='modal-content'>
-                        <div className='modal-header'>
-                            <h5 className='modal-title'>Delete Task</h5>
-                            <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                        </div>
-                        <div className='modal-body'>
-                            <p>Are sure you want to delete this task item?</p>
-                        </div>
-                        <div className='modal-footer'>
-                            <button type='button' className='btn btn-secondary' data-bs-dismiss='modal'>No</button>
-                            <button type='button' className='btn btn-primary bg-dark' onClick={() => onDeleteClick(props.task.id)}>Yes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Dialog
+                id={dialogId}
+                title={dialogTitle}
+                body={dialogBody}
+                action={() => onDeleteClick(props.task.id)}
+            />
         </>
     );
 

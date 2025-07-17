@@ -53,20 +53,6 @@ export const MoreTaskCrudOperations = () => {
                     <ul className='nav nav-pills mb-3' id='pills-tab' role='tablist'>
                         <li className='nav-item' role='presentation'>
                             <button
-                                className='nav-link'
-                                id='pills-create-task-tab'
-                                data-bs-toggle='pill'
-                                data-bs-target='#pills-create-task'
-                                type='button'
-                                role='tab'
-                                aria-controls='pills-create-task'
-                                aria-selected='false'
-                            >
-                                Create Task
-                            </button>
-                        </li>
-                        <li className='nav-item' role='presentation'>
-                            <button
                                 className='nav-link active'
                                 id='pills-view-task-tab'
                                 data-bs-toggle='pill'
@@ -95,14 +81,6 @@ export const MoreTaskCrudOperations = () => {
                         </li>
                     </ul>
                     <div className='tab-content' id='pills-tabContent'>
-                        <div
-                            className='tab-pane fade'
-                            id='pills-create-task'
-                            role='tabpanel'
-                            aria-labelledby='pills-create-task-tab'
-                        >
-                            <NewTask />
-                        </div>
                         <div
                             className='tab-pane fade show active'
                             id='pills-view-task'

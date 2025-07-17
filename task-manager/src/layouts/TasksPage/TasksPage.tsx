@@ -41,7 +41,7 @@ export const TasksPage = () => {
         }
         fetchData();
 
-    }, [searchText, selectedItem, pageInfo.pageNumber]);
+    }, [tasks, searchText, selectedItem, pageInfo.pageNumber]);
 
 
     const prepareUrl = () => {
@@ -113,8 +113,8 @@ export const TasksPage = () => {
                             <div className='p-3'>
                                 {
                                     (tasks.length < 1) ?
-                                    <h1 className='text-center'>No Content!</h1>:
-                                    tasks.map((task, index) => <TaskItem task={task} index={index} key={task.id} />)
+                                        <h1 className='text-center'>No Content!</h1> :
+                                        tasks.map((task, index) => <TaskItem task={task} index={index} key={task.id} />)
                                 }
                             </div>
                         </div>
