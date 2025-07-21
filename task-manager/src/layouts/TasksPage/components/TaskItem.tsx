@@ -23,6 +23,7 @@ export const TaskItem: React.FC<{ index: number, task: TaskModel }> = (props) =>
                 }
             });
             if (!response.ok) throw new Error("Failed to delete task");
+            console.log("deleted");
         } catch (error: any) {
             setHttpError(error.message)
         }
@@ -32,10 +33,8 @@ export const TaskItem: React.FC<{ index: number, task: TaskModel }> = (props) =>
         <>
             <div className='card d-flex flex-row bg-light text-dark p-2 mb-1'>
 
-                <span className="rounded-circle bg-dark text-light d-flex justify-content-center align-items-center">
-                    <span className="rounded-circle bg-light text-dark d-flex justify-content-center align-items-center" style={{ width: '2em', height: '2em', fontSize: '1em' }}>
+                <span className="rounded-circle bg-dark text-light d-flex justify-content-center align-items-center" style={{ width: '2em', height: '2em', fontSize: '1em' }}>
                         {props.index + 1}
-                    </span>
                 </span>
                 <span className='flex-grow-1 text-center'>
                     {props.task.title}
@@ -51,7 +50,7 @@ export const TaskItem: React.FC<{ index: number, task: TaskModel }> = (props) =>
                 id={dialogId}
                 title={dialogTitle}
                 body={dialogBody}
-                action={() => onDeleteClick(props.task.id)}
+                action={()=> onDeleteClick(props.task.id)}
             />
         </>
     );

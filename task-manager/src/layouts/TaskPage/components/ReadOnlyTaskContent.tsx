@@ -2,8 +2,8 @@
 import { useLocation } from "react-router-dom";
 import TaskModel from "../../../model/TaskModel";
 
-
 export const ReadOnlyTaskContent:React.FC<{task:TaskModel}> = (props) => {
+    
     return (
         <div className='vw-100 p-3'>
             <div className='card p-5'>

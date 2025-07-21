@@ -2,6 +2,7 @@ import { useState } from "react"
 import TaskModel from "../../../model/TaskModel"
 import * as Routes from '../../../Routes';
 import { TaskPageNavigationBar } from "./TaskPageNavigationBar";
+import { Alert } from "../../utils/Alert";
 
 
 export const NewTask: React.FC = () => {
@@ -48,12 +49,12 @@ export const NewTask: React.FC = () => {
             if (response.status !== 201) {
                 const result = await response.json();
                 throw new Error(result.Message);
+            } else {
+                setMessage("Task successfully scheduled")
+                setSuccessAlert(true);
+                setErrorAlert(false);
             }
-            setMessage("Task successfully scheduled")
-            setSuccessAlert(true);
-            setErrorAlert(false);
         } catch (error: any) {
-            console.log(error);
             setMessage(error.message);
             setErrorAlert(true);
             setSuccessAlert(false);
@@ -62,66 +63,52 @@ export const NewTask: React.FC = () => {
 
     return (
         <>
-        <TaskPageNavigationBar/>
-        <div className='vw-100 p-3'>
-            <div className='card p-5'>
-                <div className='card-body'>
-                    <h5 className='card-title display-5 fw-bolder'>Schedule a task</h5>
-                    <form onSubmit={handleSubmit}>
-                        <div className='mb-3 card shadow-sm p-3'>
-                            <label className='form-label' htmlFor="task-title">Title:</label>
-                            <input id='task-title' className='form-control' type="text" placeholder="Title"
-                                name='title' value={task.title} onChange={handleTextChangeEvent} required />
-                        </div>
-                        <div className='mb-3 card shadow-sm p-3'>
-                            <label className='form-label' htmlFor='task-description'>Description:</label>
-                            <textarea id='task-description' className='form-control' rows={10} placeholder='Description'
-                                name='description' value={task.description} onChange={handleTextChangeEvent} />
-                        </div>
-                        <div className='row mb-3 mx-0 p-3 border rounded shadow-sm'>
-                            <div className='mb-3 col-sm-9 col-md-5 col-lg-5'>
-                                <label className='form-label' htmlFor='task-status'>Status:</label>
-                                <select className='form-select' aria-label='select status' name='status'
-                                    value={task.status} onChange={handleTextChangeEvent} required>
-                                    <option defaultValue={'Select status'}>Select status</option>
-                                    {options.map((option, index) => <option value={option} key={index}>{option}</option>)}
-                                </select>
+            <TaskPageNavigationBar />
+            <div className='vw-100 p-3'>
+                <div className='card p-5'>
+                    <div className='card-body'>
+                        <h5 className='card-title display-5 fw-bolder'>Schedule a task</h5>
+                        <form onSubmit={handleSubmit}>
+                            <div className='mb-3 card shadow-sm p-3'>
+                                <label className='form-label' htmlFor="task-title">Title:</label>
+                                <input id='task-title' className='form-control' type="text" placeholder="Title"
+                                    name='title' value={task.title} onChange={handleTextChangeEvent} required />
                             </div>
+                            <div className='mb-3 card shadow-sm p-3'>
+                                <label className='form-label' htmlFor='task-description'>Description:</label>
+                                <textarea id='task-description' className='form-control' rows={10} placeholder='Description'
+                                    name='description' value={task.description} onChange={handleTextChangeEvent} />
+                            </div>
+                            <div className='row mb-3 mx-0 p-3 border rounded shadow-sm'>
+                                <div className='mb-3 col-sm-9 col-md-5 col-lg-5'>
+                                    <label className='form-label' htmlFor='task-status'>Status:</label>
+                                    <select className='form-select' aria-label='select status' name='status'
+                                        value={task.status} onChange={handleTextChangeEvent} required>
+                                        <option defaultValue={'Select status'}>Select status</option>
+                                        {options.map((option, index) => <option value={option} key={index}>{option}</option>)}
+                                    </select>
+                                </div>
 
-                            <div className='mb-3 col-sm-9 col-md-5 col-lg-5'>
-                                <label className='form-label' htmlFor='task-datetime'>Due Date/Time</label>
-                                <input id='task-datetime' className='form-control' type='datetime-local' name='dueDateTime'
-                                    value={task.dueDateTime.toISOString().slice(0, 16)} onChange={handleTextChangeEvent} required />
+                                <div className='mb-3 col-sm-9 col-md-5 col-lg-5'>
+                                    <label className='form-label' htmlFor='task-datetime'>Due Date/Time</label>
+                                    <input id='task-datetime' className='form-control' type='datetime-local' name='dueDateTime'
+                                        value={task.dueDateTime.toISOString().slice(0, 16)} onChange={handleTextChangeEvent} required />
+                                </div>
                             </div>
-                        </div>
-                        <button className='btn bg-dark text-light' type='submit'>Schedule</button>
-                        {/* alert user */}
-                        {
-                            successAlert &&
-                            (<div className='alert alert-success alert-dismissible fade show mt-3' role='alert'>
-                                <strong>{message}</strong>
-                                <button
-                                    type='button'
-                                    className='btn-close' data-bs-dismiss='alert'
-                                    aria-label='Close'
-                                    onClick={() => (setSuccessAlert(false))}></button>
-                            </div>)
-                        }
-                        {
-                            errorAlert &&
-                            (<div className='alert alert-danger alert-dismissible fade show mt-3' role='alert'>
-                                <strong>{message}</strong>
-                                <button
-                                    type='button'
-                                    className='btn-close' data-bs-dismiss='alert'
-                                    aria-label='Close'
-                                    onClick={() => (setErrorAlert(false))}></button>
-                            </div>)
-                        }
-                    </form>
+                            <button className='btn bg-dark text-light' type='submit'>Schedule</button>
+                            {/* alert user */}
+                            {
+                                successAlert &&
+                                <Alert background={'bg-success'} message={message} setIsVisible={() => setSuccessAlert(false)} />
+                            }
+                            {
+                                errorAlert &&
+                                <Alert background={'bg-danger'} message={message} setIsVisible={() => (setErrorAlert(false))} />
+                            }
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
         </>
     )
 }

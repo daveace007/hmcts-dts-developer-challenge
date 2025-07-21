@@ -1,6 +1,7 @@
 
 
 export const Dialog:React.FC<{id:string, title:string, body:string, action:Function}> = (props)=>{
+    
     return(
         <div id={props.id} className='modal fade' tabIndex={-1}>
                 <div className='modal-dialog'>
@@ -14,7 +15,7 @@ export const Dialog:React.FC<{id:string, title:string, body:string, action:Funct
                         </div>
                         <div className='modal-footer'>
                             <button type='button' className='btn btn-secondary' data-bs-dismiss='modal'>No</button>
-                            <button type='button' className='btn btn-primary bg-dark' onClick={() => props.action}>Yes</button>
+                            <button type='button' className='btn btn-primary bg-dark' data-bs-dismiss='modal' onClick={() => props.action()}>Yes</button>
                         </div>
                     </div>
                 </div>

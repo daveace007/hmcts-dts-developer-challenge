@@ -24,7 +24,7 @@ export const MoreTaskCrudOperations = () => {
             setHttpError(error.message);
         });
 
-    }, [])
+    }, [task])
 
     const fetchTask = async (url: string) => {
 
