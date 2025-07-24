@@ -1,13 +1,16 @@
-import { useHistory } from "react-router-dom";
-import * as Routes from '../../Routes'
 
-export const Fab = () => {
+type FabProperties = {
+    background:string,
+    textColor: string,
+    label: string,
+    actionEvent:Function
+};
 
-    const history = useHistory();
+export const Fab:React.FC<FabProperties> = (props) => {
 
     return (
-        <button className='btn bg-dark text-light rounded-circle p-0 d-block d-lg-none shadow'
-        onClick ={()=> history.push(`${Routes.NEW_TASK}`)}
+        <button className={`btn ${props.background} ${props.textColor} rounded-circle p-0 d-block d-lg-none shadow`}
+            onClick={()=>props.actionEvent()}
             style={{
                 position: 'fixed',
                 bottom: 'clamp(172px, 20vw, 256px)',
@@ -17,7 +20,7 @@ export const Fab = () => {
                 fontSize: 'clamp(20px, 5vw, 28px)',
                 zIndex: 1050
             }}>
-            +
+            {props.label}
         </button>
     );
 }

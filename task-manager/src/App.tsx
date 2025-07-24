@@ -8,8 +8,12 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import * as Routes from './Routes';
 import { Fab } from './layouts/utils/Fab';
 import { NewTask } from './layouts/TaskPage/components/NewTask';
+import { useHistory } from 'react-router-dom';
 
 export const App = () => {
+
+  const history = useHistory();
+
   return (
     <div className='d-flex flex-column min-vh-100 bg-transparent'>
       <Header />
@@ -26,7 +30,7 @@ export const App = () => {
           </Route>
           <TaskPage />
         </Switch>
-        <Fab />
+        <Fab background='bg-dark' textColor='text-light' label='+' actionEvent={()=> history.push(`${Routes.NEW_TASK}`)}/>
       </div>
       <Footer />
     </div>
