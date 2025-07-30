@@ -49,7 +49,7 @@ export const PaginationBar: React.FC<paginationProps> = ({ pageInfo, onPageInfoC
     let pageLabels: number[] = [];
     const minLabel: number = Math.min(...selectablePageLabels);
     if (minLabel > 1) {
-      pageLabels = selectablePageLabels.map(label => label - 1);      
+      pageLabels = selectablePageLabels.map(label => label - 1);
       setSelectablePageLabels(pageLabels);
     }
   };
@@ -59,6 +59,10 @@ export const PaginationBar: React.FC<paginationProps> = ({ pageInfo, onPageInfoC
     onPageInfoChange(data);
   }
 
+  const isLastPages = () => Math.max(...selectablePageLabels) === pageInfo.totalPages;
+
+  const isFirstPages = () => Math.min(...selectablePageLabels) === 1;
+
   useEffect(() => {
     setCurrentPageLabel(1);
     initSelectablePagesLabels();
@@ -67,7 +71,7 @@ export const PaginationBar: React.FC<paginationProps> = ({ pageInfo, onPageInfoC
   return (
     <nav aria-label='Task pages'>
       <ul className='pagination'>
-        <li className={`page-item ${isLoading || currentPageLabel === 1 ? 'disabled' : ''}`}>
+        <li className={`page-item ${isLoading || isFirstPages() ? 'disabled' : ''}`}>
           <a
             className='page-link'
             href='#'
@@ -99,7 +103,7 @@ export const PaginationBar: React.FC<paginationProps> = ({ pageInfo, onPageInfoC
               </li>
           )
         }
-        <li className={`page-item ${isLoading || currentPageLabel === pageInfo.totalPages ? 'disabled' : ''}`}>
+        <li className={`page-item ${isLoading || isLastPages() ? 'disabled' : ''}`}>
           <a
             className='page-link'
             href='#'
