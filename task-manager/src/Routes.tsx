@@ -8,4 +8,4 @@ export const NEW_TASK = '/new-task-page'
 
 export const TASK_PAGE = "/task-page";
 
-export const BASE_URL = "http://localhost:8080/api/tasks";
+export const BASE_URL = `${process.env.REACT_APP_API_URL}/api/tasks`
