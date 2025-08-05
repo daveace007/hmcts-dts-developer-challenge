@@ -41,7 +41,7 @@ export const TasksPage = () => {
         }
         fetchData();
 
-    }, [tasks, searchText, selectedItem, pageInfo.pageNumber]);
+    }, [searchText, selectedItem, pageInfo.pageNumber]);
 
 
     const prepareUrl = () => {
