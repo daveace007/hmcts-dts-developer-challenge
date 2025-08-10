@@ -2,7 +2,7 @@
 
 import { SearchBar } from "./components/SearchBar";
 import { TaskItem } from "./components/TaskItem";
-import { PageInfo, PaginationBar } from "./components/PaginationBar";
+import { PageInfo, PaginationBar } from "../utils/PaginationBar";
 import { useState, useEffect } from "react";
 import TaskModel from "../../model/TaskModel";
 import * as Routes from "../../Routes"
