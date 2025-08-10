@@ -71,57 +71,62 @@ export const NewTask: React.FC = () => {
     return (
         <>
             <TaskPageNavigationBar />
-            <div className='vw-100 p-3'>
-                <div className='card p-5'>
+            <div className='vw-95 p-3'>
+                <div className='p-3'>
                     <div className='card-body'>
                         <h5 className='card-title display-5 fw-bolder'>Schedule a task</h5>
                         <form className='needs-validation' onSubmit={handleSubmit} noValidate>
-                            <div className='mb-3 card shadow-sm p-3'>
-                                <label className='form-label' htmlFor="task-title">Title:</label>
-                                <input id='task-title' className='form-control' type="text" placeholder="Title"
-                                    name='title' value={task.title} onChange={handleTextChangeEvent} required />
-                                <div className='invalid-feedback'>Please provide valid title</div>
-                            </div>
-                            <div className='mb-3 card shadow-sm p-3'>
-                                <label className='form-label' htmlFor='task-description'>Description:</label>
-                                <textarea id='task-description' className='form-control' rows={10} placeholder='Description'
-                                    name='description' value={task.description} onChange={handleTextChangeEvent} required />
-                                <div className='invalid-feedback'>Please provide valid description</div>
-                            </div>
-                            <div className='row mb-3 mx-0 p-3 border rounded shadow-sm'>
-                                <div className='mb-3 col-sm-9 col-md-5 col-lg-5'>
-                                    <label className='form-label' htmlFor='task-status'>Status:</label>
-                                    <select className='form-select' aria-label='select status' name='status'
-                                        value={task.status} onChange={handleTextChangeEvent} required>
-                                        <option value={''}>Select status</option>
-                                        {options.map((option, index) => <option value={option} key={index}>{option}</option>)}
-                                    </select>
-                                    <div className='invalid-feedback'>Please select valid status</div>
+                            <div className='row border rounded shadow-sm d-flex justify-content-center mb-3 p-3'>
+                                <div className='mb-3 mx-3 col-sm-10 col-md-5 col-lg-5'>
+                                    <div className='mb-3'>
+                                        <label className='form-label' htmlFor="task-title" style={{fontWeight:'bold'}}>Title:</label>
+                                        <input id='task-title' className='form-control' type="text" placeholder="Title"
+                                            name='title' value={task.title} onChange={handleTextChangeEvent} required />
+                                        <div className='invalid-feedback'>Please provide valid title</div>
+                                    </div>
+                                    <div className='mb-3 mx-0'>
+                                        <div className='mb-3'>
+                                            <label className='form-label' htmlFor='task-status' style={{fontWeight:'bold'}}>Status:</label>
+                                            <select className='form-select' aria-label='select status' name='status'
+                                                value={task.status} onChange={handleTextChangeEvent} required>
+                                                <option value={''}>Select status</option>
+                                                {options.map((option, index) => <option value={option} key={index}>{option}</option>)}
+                                            </select>
+                                            <div className='invalid-feedback'>Please select valid status</div>
+                                        </div>
+                                    </div>
+                                    <div className='mb-3 mx-0'>
+                                        <div className='mb-3'>
+                                            <label className='form-label' htmlFor='task-datetime' style={{fontWeight:'bold'}}>Due Date/Time:</label>
+                                            <br />
+                                            <DatePicker
+                                                id='task-datetime'
+                                                name="dueDateTime"
+                                                selected={task.dueDateTime}
+                                                onChange={date => setTask(
+                                                    prev => new TaskModel(
+                                                        prev.id,
+                                                        prev.title,
+                                                        prev.description,
+                                                        prev.status,
+                                                        date ?? prev.dueDateTime
+                                                    )
+                                                )}
+                                                isClearable
+                                                className="form-control"
+                                                placeholderText="Select due date time"
+                                                showTimeSelect
+                                                dateFormat="dd-MM-yyyy HH:mm:ss"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div className='mb-3 col-sm-9 col-md-5 col-lg-5'>
-                                    <label className='form-label' htmlFor='task-datetime'>Due Date/Time:</label>
-                                    <br />
-                                    <DatePicker
-                                        id='task-datetime'
-                                        name="dueDateTime"
-                                        selected={task.dueDateTime}
-                                        onChange={date => setTask(
-                                            prev => new TaskModel(
-                                                prev.id,
-                                                prev.title,
-                                                prev.description,
-                                                prev.status,
-                                                date ?? prev.dueDateTime
-                                            )
-                                        )}
-                                        isClearable
-                                        className="form-control"
-                                        placeholderText="Select due date time"
-                                        showTimeSelect
-                                        dateFormat="dd-MM-yyyy HH:mm:ss"
-                                        required
-                                    />
+                                <div className='mb-3 mx-0 col-sm-10 col-md-5 col-lg-5'>
+                                    <label className='form-label' htmlFor='task-description' style={{fontWeight:'bold'}}>Description:</label>
+                                    <textarea id='task-description' className='form-control' rows={10} placeholder='Description'
+                                        name='description' value={task.description} onChange={handleTextChangeEvent} required />
+                                    <div className='invalid-feedback'>Please provide valid description</div>
                                 </div>
                             </div>
                             <button className='btn bg-dark text-light' type='submit'>Schedule</button>
